@@ -60,14 +60,7 @@ class _HomeScreen extends State<HomeScreen> {
       context,
       MaterialPageRoute(
         builder: (context) =>
-            ChangeNotifierProxyProvider<List<PurchaseItem>, PurchaseItemList>(
-          create: (_) => PurchaseItemList(),
-          update: (_, purchasedItems, purchaseItemList) {
-            purchaseItemList!.updateItems(purchasedItems);
-            return purchaseItemList;
-          },
-          child: ProductsScreen(),
-        ),
+            ProductsScreen(),
       ),
     );
   }

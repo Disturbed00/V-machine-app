@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/screens/cart/purchase_item_list.dart';
 import 'package:provider/provider.dart';
 
 import 'package:grocery_app/screens/cart/checkout_bottom_sheet.dart';
@@ -43,13 +44,9 @@ class ProductsScreen extends StatelessWidget {
   void _showCheckoutBottomSheet(BuildContext context, String productName) {
     showModalBottomSheet(
       context: context,
-      builder: (BuildContext context) => Consumer<List<PurchaseItem>>(
-        builder: (context, purchasedItems, _) {
-          return CheckoutBottomSheet(
-            productName: productName,
-            purchasedItems: purchasedItems,
-          );
-        },
+      builder: (_) => CheckoutBottomSheet(
+        productName: productName,
+        purchasedItems: context.read<PurchaseItemList>().items,
       ),
     );
   }
