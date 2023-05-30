@@ -56,23 +56,11 @@ class _HomeScreen extends State<HomeScreen> {
   }
 
   void _onMarkerTapped(MarkerId markerId) {
-    final purchaseItemList = PurchaseItemList();
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) =>
-            ChangeNotifierProxyProvider<List<PurchaseItem>, PurchaseItemList>(
-          create: (_) => purchaseItemList,
-          update: (_, purchasedItems, purchaseItemList) {
-            purchaseItemList!.updateItems(purchasedItems);
-            return purchaseItemList;
-          },
-          child: ChangeNotifierProvider<PurchaseItemList>.value(
-              value: purchaseItemList,
-              child: Provider<List<PurchaseItem>>.value(
-                  value: purchaseItemList.items,
-                  child: ProductsScreen())),
-        ),
+            ProductsScreen(),
       ),
     );
   }

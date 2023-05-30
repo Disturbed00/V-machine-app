@@ -25,13 +25,12 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 25,
-        vertical: 30,
       ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      child: new Wrap(
+      child: Wrap(
         children: <Widget>[
           Row(
             children: [
@@ -162,8 +161,8 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
     updatedPurchasedItems.add(newPurchaseItem);
 
     final purchaseItemProvider =
-        Provider.of<List<PurchaseItem>>(context, listen: false);
-    purchaseItemProvider.addAll(updatedPurchasedItems);
+          Provider.of<PurchaseItemList>(context, listen: false);
+    purchaseItemProvider.updateItems(updatedPurchasedItems);
 
     Navigator.pop(context);
   }
@@ -187,16 +186,5 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
         );
       },
     );
-  }
-}
-
-class PurchaseItemList extends ChangeNotifier {
-  List<PurchaseItem> _items = [];
-
-  List<PurchaseItem> get items => _items;
-
-  void updateItems(List<PurchaseItem> purchasedItems) {
-    _items = purchasedItems;
-    notifyListeners();
   }
 }
